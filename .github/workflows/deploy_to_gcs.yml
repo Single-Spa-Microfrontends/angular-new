@@ -23,8 +23,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Extract repo name
+        run: |
+          echo "REPOSITORY_NAME=$(basename $GITHUB_REPOSITORY)" >> $GITHUB_ENV
+        
       - name: Build
-        run: pnpm run build
+        run: pnpm run build:single-spa:angular-new --deploy-url ${{ env.DEPLOY_URL }}
+        env:
+          DEPLOY_URL: https://storage.googleapis.com/${{ secrets.GCS_BUCKET_NAME }}/$REPOSITORY_NAME/$GITHUB_SHA/
 
       - name: Archive build output
         uses: actions/upload-artifact@v2
