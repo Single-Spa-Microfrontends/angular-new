@@ -37,7 +37,8 @@
               "path": "extra-webpack.config.js",
               "libraryName": "angular-new",
               "libraryTarget": "umd"
-            }
+            },
+            "deployUrl": "http://localhost:9001/"
           },
           "configurations": {
             "production": {
