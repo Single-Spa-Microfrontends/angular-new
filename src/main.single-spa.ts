@@ -7,19 +7,19 @@ import { singleSpaAngular, getSingleSpaExtraProviders } from 'single-spa-angular
 
 
 import { AppModule } from './app/app.module';
-// import { environment } from './environments/environment';
 import { singleSpaPropsSubject } from './single-spa/single-spa-props';
+import {environment} from "./environments/environment";
 
-// if (environment.production) {
-//   enableProdMode();
-// }
+if (environment.production) {
+  enableProdMode();
+}
 
 const lifecycles = singleSpaAngular({
   bootstrapFunction: singleSpaProps => {
     singleSpaPropsSubject.next(singleSpaProps);
     return platformBrowserDynamic(getSingleSpaExtraProviders()).bootstrapModule(AppModule);
   },
-  template: '<app-root />',
+  template: '<app-new-root />',
   Router,
   NavigationStart,
   NgZone,
